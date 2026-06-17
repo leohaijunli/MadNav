@@ -1,0 +1,12 @@
+name = "MadNav"
+uuid = "e42c5158-c939-4a3b-ae8d-ef118ff49c5f"
+version = "0.1.0"
+authors = ["leohaijunli <haijunli@uvic.ca>"]
+
+[deps]
+Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
+TestItemRunner = "f8b46487-2199-4994-9208-9a1283c18c0a"
+
+[compat]
+Revise = "3.15.1"
+TestItemRunner = "1.1.5"

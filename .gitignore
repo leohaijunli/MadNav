@@ -1,0 +1,11 @@
+Manifest.toml
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+/docs/build/
+/sysimage.so
+/data/*.h5
+/data/*.bin
+/data/*.mat
+/logs/
+.DS_Store

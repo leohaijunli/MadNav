@@ -1,0 +1,10 @@
+{
+    "julia.environmentPath": "${workspaceFolder}",
+    "julia.numThreads": "auto",
+    "julia.symbolCacheDownload": true,
+    "julia.enableTelemetry": false,
+    "[julia]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
+    }
+}

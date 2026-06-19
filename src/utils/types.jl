@@ -472,3 +472,23 @@ function sgl_fields(f = "")
 end # function sgl_fields
 
 
+# `SimFrame` is the fundamental unit used across the system.
+# Producers convert their raw input formats into `SimFrame` instances.
+# Downstream components (LiveSource, UI, recorder) depend only on this type.
+#
+# When adding new fields, add them here and update the corresponding
+# Producer parsing logic to populate the new fields.
+
+struct SimFrame
+    t       :: Float64   # timestamp [s], relative or absolute; Producers normalize as needed
+    lat     :: Float64   # latitude [rad]
+    lon     :: Float64   # longitude [rad]
+    alt     :: Float64   # altitude [m], relative to takeoff or MSL (documented by Producer)
+    mag_1_c :: Float64   # compensated magnetic field magnitude [nT]
+    # Future extensions:
+    # mag_1_uc :: Float64   # uncompensated magnetic field
+    # roll     :: Float64   # [rad]
+    # pitch    :: Float64   # [rad]
+    # yaw      :: Float64   # [rad]
+    # ins_vn   :: Float64   # INS north velocity [m/s]
+end

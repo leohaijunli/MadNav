@@ -1,7 +1,7 @@
 module MadNav
 
-# 依赖和子文件在开发过程中逐步添加
-# 每添加一个功能模块，在此处追加对应的 using 和 include
+# Dependencies and submodules are added incrementally during development
+# Add corresponding using and include statements here as new features are added
 using ArchGDAL, CSV, Flux, ForwardDiff, HDF5, LazyArtifacts
 using DataFrames: DataFrame, combine, groupby, order, sort
 using DelimitedFiles: readdlm, writedlm
@@ -11,14 +11,34 @@ using Flux: @layer, Adam, Chain, DataLoader, Dense
 using Flux: destructure, flatten, huber_loss, mae, mse, trainables
 using LinearAlgebra, Plots, TOML, ZipFile, Zygote
 using KernelFunctions: Kernel, PolynomialKernel, kernelmatrix
+
+using Dash
+using PlotlyJS
+using Sockets
+using DataStructures: CircularBuffer
+using Base.Threads
+
 include("utils/types.jl")
 include("utils/analysis_util.jl")
 include("utils/params.jl")
 include("utils/xyz2h5.jl")
 include("utils/dcm.jl")
 include("utils/baseline_plots.jl")
-include("get_XYZ.jl")
-include("tolles_lawson.jl")
+include("utils/tolles_lawson.jl")
+include("utils/get_XYZ.jl")
+
+include("core/live_source.jl")
+include("core/app.jl")
+include("core/loader.jl")
+
+include("dashboard/layout.jl")
+include("dashboard/callbacks.jl")
+include("dashboard/figures.jl")
+
+include("datasource/uav.jl")
+include("datasource/file_stream.jl")
+include("datasource/replay.jl")
+
 
 @compat(public, (
 ottawa_area_maps_gxf,emag2,emm720,namad,
@@ -38,7 +58,7 @@ create_P0,create_Qd,get_pinson,fogm,
 fdm,
 compare_fields))
 
-# 供外部调用的接口函数，后续逐步添加
+# Exported API functions for external use; add more here as needed
 export 
 LinCompParams,NNCompParams,EKF_RT,Map_Cache,
 sgl_2020_train,sgl_2021_train,ottawa_area_maps,
@@ -68,6 +88,12 @@ mpf,
 nekf,nekf_train,
 create_TL_A,create_TL_coef,
 xyz2h5
+
+export SimFrame
+export LiveSource, send_ctrl!
+export ReplayProducer, FileStreamProducer, UAVProducer
+export load_xyz20, make_demo_frames
+export build_dash_app
 
 
 end # module MadNav

@@ -238,7 +238,7 @@ function build_dash_app(rs::ReplayState)
         dcc_interval(id="interval", interval=200, n_intervals=0),
 
         # Hidden store for current frame index
-        dcc_store(id="store-idx", data=1),
+        dcc_store(id="store-window", data=1),
 
     ])
 
@@ -246,7 +246,7 @@ function build_dash_app(rs::ReplayState)
 
     # Button callbacks -> update replay state
     callback!(app,
-        Output("store-idx", "data"),
+        Output("store-window", "data"),
         Input("btn-start", "n_clicks"),
         Input("btn-pause", "n_clicks"),
         Input("btn-reset", "n_clicks"),
@@ -296,7 +296,7 @@ function build_dash_app(rs::ReplayState)
         Output("graph-mag",    "figure"),
         Output("status-text",  "children"),
         Output("slider-frame", "value"),
-        Input("store-idx", "data"),
+        Input("store-window", "data"),
         Input("interval", "n_intervals"),
     ) do args...
         # args order: store_idx, interval_n

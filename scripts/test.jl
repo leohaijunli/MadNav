@@ -16,5 +16,5 @@ detrend_data = false
 Fig1 = plot_mag(xyz;ind,show_plot,save_plot,detrend_data,
             use_mags = [:mag_1_c])
 display(Fig1)
-print("按回车键结束...")
-readline() # 等待用户输入，防止程序直接退出导致绘图窗口关闭
+print("Press Enter to exit...")
+readline() # wait for user input so the plot window does not close immediately

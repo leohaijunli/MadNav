@@ -1,26 +1,42 @@
 # MadNav.jl
+repo for MagNav navigation online, simulation and Dashboard.
 
-多 UAV 磁异常导航系统。
+# structure of the main codes
+MadNav
+├─ scripts
+│  ├─ data_replay.jl                    
+│  ├─ run.jl
+│  └─ test.jl     
+├─ src
+│  ├─ MadNav.jl
+│  ├─ core
+│  │  ├─ app.jl
+│  │  ├─ live_source.jl
+│  │  └─ loader.jl
+│  ├─ dashboard
+│  │  ├─ callbacks.jl
+│  │  ├─ figures.jl
+│  │  └─ layout.jl
+│  ├─ datasource
+│  │  ├─ file_stream.jl
+│  │  ├─ sim_stream.jl
+│  │  └─ uav.jl
+│  └─ utils
+│     ├─ analysis_util.jl
+│     ├─ baseline_plots.jl
+│     ├─ dcm.jl
+│     ├─ get_XYZ.jl
+│     ├─ params.jl
+│     ├─ tolles_lawson.jl
+│     ├─ types.jl
+│     └─ xyz2h5.jl
 
-## 开发状态
 
-增量构建中，见 `docs/dev_log.md`。
-
-## 快速开始
+# Usage
 
 ```bash
-cd MadNav
-julia --project                   # 进入 REPL
-julia --project test/runtests.jl  # 运行测试
-```
+# Simulated data
+julia --project scripts/run.jl
 
-## 添加新模块流程
-
-```
-1. 找到源文件（MagNav.jl 或自研）
-2. 复制到 src/
-3. julia --project -e 'using Pkg; Pkg.add("需要的包")'
-4. 在 src/MadNav.jl 添加 using 和 include
-5. 写测试，运行验证
-6. git commit -m "feat: add XxxModule"
-```
+# offline datasets replay
+julia --project scripts/run.jl data/Flt1006_train.h5

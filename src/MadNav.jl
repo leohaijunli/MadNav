@@ -37,7 +37,7 @@ include("dashboard/figures.jl")
 
 include("datasource/uav.jl")
 include("datasource/file_stream.jl")
-include("datasource/replay.jl")
+include("datasource/sim_stream.jl")
 
 
 @compat(public, (

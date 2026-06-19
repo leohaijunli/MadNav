@@ -1,6 +1,6 @@
-# producers/replay.jl — offline replay producer (simulate real-time)
+# datasource/sim_stream.jl — offline simulation stream producer (simulate real-time)
 #
-# ReplayProducer accepts a preloaded Vector{SimFrame} and pushes frames at real-time
+# SimStreamProducer accepts a preloaded Vector{SimFrame} and pushes frames at real-time
 # intervals (sleeping by the true Δt divided by speed) to simulate a live stream.
 #
 # Supports full control commands: :start / :pause / :seek / :speed / :stop
